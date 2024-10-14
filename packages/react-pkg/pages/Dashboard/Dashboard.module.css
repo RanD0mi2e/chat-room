@@ -1,0 +1,22 @@
+.layout {
+    display: grid;
+    grid-template-areas: 'aside nav main';
+    grid-template: 70px 240px 1fr / 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.aside {
+    grid-area: aside;
+    background-color: #f4f4f4;
+}
+
+.nav {
+    grid-area: nav;
+    background-color: #ccc;
+}
+
+.content {
+    grid-area: main;
+    background-color: #fff;
+}
