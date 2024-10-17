@@ -1,13 +1,22 @@
-import styles from './Dashboard.module.css'
+import { Outlet } from "react-router-dom";
+import styles from "./Dashboard.module.css";
+// import { Avatar } from "@/components/Avatar/Avatar";
 
 // 面板首页
 export default function Dashboard() {
-    return (
-        <div className={styles.layout}>
-            <nav className={styles.nav}></nav>
-            <aside className={styles.aside}></aside>
-            <div className={styles['action-bar']}></div>
-            <main className={styles.content}></main>
-        </div>
-    )
+  const handleClick = (id: string) => {
+    return id;
+  };
+
+  return (
+    <div className={styles.layout}>
+      <aside className={styles.aside}>
+        {/* <Avatar src="" /> */}
+      </aside>
+      <div className={styles["action-bar"]}></div>
+      <main className={styles.content}>
+        <Outlet></Outlet>
+      </main>
+    </div>
+  );
 }

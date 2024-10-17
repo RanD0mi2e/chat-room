@@ -1,0 +1,14 @@
+.avatar {
+  border-radius: 50%;
+  transition: border-radius 0.3s ease;
+  object-fit: cover;
+}
+
+.avatar:hover {
+  border-radius: 20%;
+}
+
+.selected {
+  border-radius: 50%;
+  border: 3px solid #3498db; /* 高亮边框颜色 */
+}

@@ -8,11 +8,6 @@
     overflow-y: hidden;
 }
 
-.nav {
-    grid-area: nav;
-    background-color: purple;
-}
-
 .aside {
     grid-area: aside;
     background-color: pink;
