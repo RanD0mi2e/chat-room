@@ -4,8 +4,9 @@ import styles from './Dashboard.module.css'
 export default function Dashboard() {
     return (
         <div className={styles.layout}>
-            <aside className={styles.aside}></aside>
             <nav className={styles.nav}></nav>
+            <aside className={styles.aside}></aside>
+            <div className={styles['action-bar']}></div>
             <main className={styles.content}></main>
         </div>
     )

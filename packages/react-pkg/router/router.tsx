@@ -1,10 +1,9 @@
-import Dashboard from "@/pages/Dashboard/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import { createBrowserRouter } from "react-router-dom";
-Dashboard
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/main_window',
         element: <Dashboard />
     }
 ])

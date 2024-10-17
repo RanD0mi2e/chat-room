@@ -17,5 +17,5 @@
       "@/*": ["react-pkg/*"]
     }
   },
-  "include": ["src/**/*", "react-pkg", "react-pkg/global.d.ts"]
+  "include": ["src/**/*", "react-pkg/**/*", "react-pkg/global.d.ts"]
 }
