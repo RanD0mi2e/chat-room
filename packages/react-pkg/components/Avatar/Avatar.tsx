@@ -26,6 +26,8 @@ export function AvatarWithHightLight({
   onClick,
 }: AvatarProps) {
 
+  console.log(isSelected)
+
   return (
     <div
       className={`${isSelected ? styles["avatar-hl-selected"] : styles["avatar-hl"]}`}

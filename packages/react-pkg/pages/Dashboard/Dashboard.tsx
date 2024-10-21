@@ -3,6 +3,7 @@ import styles from "./Dashboard.module.css";
 import { AvatarWithHightLight } from "@/components/Avatar/Avatar";
 import SmileIcon from "@/images/smile.jpg"
 import { useState } from "react";
+import { ChannelList } from "./components/ChannelList";
 
 // 面板首页
 export default function Dashboard() {
@@ -14,7 +15,7 @@ export default function Dashboard() {
   return (
     <div className={styles.layout}>
       <aside className={styles.aside}>
-        <AvatarWithHightLight src={SmileIcon} isSelected={selected} size={50} onClick={() => handleClick()} />
+        <ChannelList />
       </aside>
       <div className={styles["action-bar"]}></div>
       <main className={styles.content}>

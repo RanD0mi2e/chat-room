@@ -1,5 +1,6 @@
 import { AvatarWithHightLight } from "@/components/Avatar/Avatar";
 import SmileIcon from "@/images/smile.jpg";
+import { useEffect, useState } from "react";
 
 interface ChannelProps {
   id: string;
@@ -8,62 +9,55 @@ interface ChannelProps {
 }
 
 export function ChannelList() {
-  // TODO: replace MockData
-  const mockData: ChannelProps[] = [
-    {
-      id: "001",
-      name: "niko",
-    },
-    {
-      id: "002",
-      name: "hohi",
-    },
-    {
-      id: "003",
-      name: "jenkins",
-    },
-  ];
-
-  const mockDataHash = convertListToHash(mockData)
+  const [selectedItemId, setSelectedItemId] = useState({})
+  const [list, setList] = useState<ChannelProps[]>([]);
 
   const handleSelected = (id: string) => {
-    if (mockDataHash[id]) {
-      mockDataHash[id].selected = true 
-    }
-  }
+    setSelectedItemId(id)
+    console.log('change', id)
+  };
+
+  useEffect(() => {
+    let ignore = false;
+    
+    // TODO: replace MockData
+    setTimeout(() => {
+      if (ignore) {
+        const mockData: ChannelProps[] = [
+          {
+            id: "001",
+            name: "niko",
+          },
+          {
+            id: "002",
+            name: "hohi",
+          },
+          {
+            id: "003",
+            name: "jenkins",
+          },
+        ]
+        setList(mockData)
+      }
+    }, 200);
+
+    return () => {
+      ignore = true;
+    };
+  });
 
   return (
-    <ul>
-      {mockData.map((item) => (
-        <li key={item.id}>
+    <>
+      {list.map((item) => (
+        <div key={item.id}>
           <AvatarWithHightLight
             src={SmileIcon}
-            isSelected={item.selected}
+            isSelected={item.id === selectedItemId}
             size={50}
             onClick={() => handleSelected(item.id)}
           />
-        </li>
+        </div>
       ))}
-    </ul>
+    </>
   );
-}
-
-interface ListItem {
-  id: string
-  [key: string]: any
-}
-
-interface ObjectProps {
-  [key: string]: ListItem & {selected: boolean}
-}
-
-function convertListToHash(list: ListItem[]) {
-  let obj: ObjectProps = {}
-  list.forEach(item => {
-    obj[item.id] = {
-      ...item,
-      selected: false
-    }
-  })
-  return obj
 }
