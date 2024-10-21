@@ -1,6 +1,8 @@
-import { AvatarWithHightLight } from "@/components/Avatar/Avatar";
+import { Avatar, AvatarWithHightLight } from "@/components/Avatar/Avatar";
 import SmileIcon from "@/images/smile.jpg";
 import { useEffect, useState } from "react";
+
+import styles from "./ChannelList.module.css";
 
 interface ChannelProps {
   id: string;
@@ -9,17 +11,17 @@ interface ChannelProps {
 }
 
 export function ChannelList() {
-  const [selectedItemId, setSelectedItemId] = useState({})
+  const [selectedItemId, setSelectedItemId] = useState({});
   const [list, setList] = useState<ChannelProps[]>([]);
 
   const handleSelected = (id: string) => {
-    setSelectedItemId(id)
-    console.log('change', id)
+    setSelectedItemId(id);
+    console.log("change", id);
   };
 
   useEffect(() => {
     let ignore = false;
-    
+
     // TODO: replace MockData
     setTimeout(() => {
       if (ignore) {
@@ -36,8 +38,8 @@ export function ChannelList() {
             id: "003",
             name: "jenkins",
           },
-        ]
-        setList(mockData)
+        ];
+        setList(mockData);
       }
     }, 200);
 
@@ -47,9 +49,9 @@ export function ChannelList() {
   });
 
   return (
-    <>
+    <div className={styles["channel-box"]}>
       {list.map((item) => (
-        <div key={item.id}>
+        <div key={item.id} className={styles["channel-item"]}>
           <AvatarWithHightLight
             src={SmileIcon}
             isSelected={item.id === selectedItemId}
@@ -58,6 +60,14 @@ export function ChannelList() {
           />
         </div>
       ))}
-    </>
+      <div className={styles["add-newchannel"]}>
+        <AvatarWithHightLight
+          // src={SmileIcon}
+          isSelected={false}
+          size={50}
+          onClick={() => {}}
+        />
+      </div>
+    </div>
   );
 }
