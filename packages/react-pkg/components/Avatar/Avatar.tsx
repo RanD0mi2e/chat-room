@@ -28,7 +28,7 @@ export function AvatarWithHightLight({
 
   return (
     <div
-      className={`${styles["avatar-hl"]}`}
+      className={`${isSelected ? styles["avatar-hl-selected"] : styles["avatar-hl"]}`}
     >
       <div className={styles.pill} style={{ height: size + "px" }}>
         <span

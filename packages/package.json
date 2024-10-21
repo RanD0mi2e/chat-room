@@ -29,7 +29,7 @@
     "electron": "32.2.0",
     "eslint": "^8.0.1",
     "eslint-import-resolver-typescript": "^3.6.3",
-    "eslint-plugin-import": "^2.25.0",
+    "eslint-plugin-import": "^2.31.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "node-loader": "^2.0.0",
     "style-loader": "^3.0.0",

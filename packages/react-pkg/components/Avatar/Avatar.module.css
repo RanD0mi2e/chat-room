@@ -13,7 +13,8 @@
   border: 3px solid #3498db; /* 高亮边框颜色 */
 }
 
-.avatar-hl {
+.avatar-hl,
+.avatar-hl-selected {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -40,12 +41,19 @@
   transition: all 0.3s ease-out;
 }
 
-.avatar-hl:hover .avatar {
+.avatar-hl:hover .avatar,
+.avatar-hl-selected .avatar {
   border-radius: 20%;
 }
 
 .avatar-hl:hover>.pill>.pill-item{
   width: 5px;
-  height: 30px;
+  height: 20px;
 }
+
+.avatar-hl-selected>.pill>.pill-item {
+  width: 5px;
+  height: 80%;
+}
+
 
