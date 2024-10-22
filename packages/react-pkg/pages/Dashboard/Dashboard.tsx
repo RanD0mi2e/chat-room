@@ -15,7 +15,7 @@ export default function Dashboard() {
   return (
     <div className={styles.layout}>
       <aside className={styles.aside}>
-        <ChannelList />
+        <ChannelList isShowAddIcon={true} />
       </aside>
       <div className={styles["action-bar"]}></div>
       <main className={styles.content}>

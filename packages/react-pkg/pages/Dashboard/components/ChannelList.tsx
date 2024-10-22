@@ -10,7 +10,11 @@ interface ChannelProps {
   selected?: boolean;
 }
 
-export function ChannelList() {
+export function ChannelList({
+  isShowAddIcon = false,
+}: {
+  isShowAddIcon?: boolean;
+}) {
   const [selectedItemId, setSelectedItemId] = useState({});
   const [list, setList] = useState<ChannelProps[]>([]);
 
@@ -60,14 +64,17 @@ export function ChannelList() {
           />
         </div>
       ))}
-      <div className={styles["add-newchannel"]}>
-        <AvatarWithHightLight
-          // src={SmileIcon}
-          isSelected={false}
-          size={50}
-          onClick={() => {}}
-        />
-      </div>
+      {/** 新增 */}
+      {isShowAddIcon ? (
+        <div className={styles["add-newchannel"]}>
+          <AvatarWithHightLight
+            // src={SmileIcon}
+            isSelected={false}
+            size={50}
+            onClick={() => {}}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }
