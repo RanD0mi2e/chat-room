@@ -1,14 +1,18 @@
 import { Outlet } from "react-router-dom";
 import styles from "./Dashboard.module.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ChannelList } from "./components/ChannelList";
+import { ThemeContext } from "@/Contexts/ThemeContext";
+import { ToggleThemeButton } from "@/components/ToggleThemeButton/ToggleThemeButton";
 
 // 面板首页
 export default function Dashboard() {
-  const [selected, setSelected] = useState(false)
-  const handleClick = () => {
-    setSelected((val) => !val)
-  };
+
+  const { theme } = useContext(ThemeContext)
+  
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
 
   return (
     <div className={styles.layout}>
@@ -18,7 +22,9 @@ export default function Dashboard() {
       <main className={styles.main}>
         <div className={styles.tips}></div>
         <div className={styles["action-bar"]}></div>
-        <div className={styles.content}></div>
+        <div className={styles.content}>
+            <ToggleThemeButton />
+        </div>
         {/* <Outlet></Outlet> */}
       </main>
     </div>

@@ -1,14 +1,19 @@
 :root {
-  --background-color: white;
-  --text-color: black;
+  /* --background-color: #1e1f22; */
+  /* --text-color: black; */
+  font-size: 14px;
 }
 
-.light-mode {
-  --background-color: white;
-  --text-color: black;
-}
-
-.dark-mode {
-  --background-color: black;
+[data-theme='dark'] {
+  --background-color: #1e1f22;
+  --background-actionBar-color: #2b2d31;
+  --background-content-color: #313338;
   --text-color: white;
+}
+
+[data-theme='light'] {
+  --background-color: #e3e5e8;
+  --background-actionBar-color: #f2f3f5;
+  --background-content-color: #ffffff;
+  --text-color: black;
 }

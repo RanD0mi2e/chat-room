@@ -11,6 +11,7 @@
 .aside {
   grid-area: aside;
   background-color: var(--background-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .main {
@@ -27,15 +28,20 @@
   grid-area: tips;
   height: 40px;
   background-color: purple;
+  /* background-color: var(--background-content-color); */
+  /* transition: background-color 0.3s ease, color 0.3s ease; */
 }
 
 .action-bar {
   grid-area: action;
-  background-color: pink;
+  background-color: var(--background-actionBar-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .content {
   grid-area: content;
+  background-color: var(--background-content-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media screen and (max-width: 959px) {
