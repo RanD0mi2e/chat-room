@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Avatar.module.css";
+import { ReactComponent as AddIcon} from '@/images/add.svg'
 
 interface AvatarProps {
   src?: string;
@@ -32,7 +33,9 @@ function DefaultAvatar({ size = 40 }: { size?: number }) {
     <div
       style={{ width: size, height: size }}
       className={styles["default-img"]}
-    ></div>
+    >
+      <AddIcon className={styles["add-icon"]} />
+    </div>
   );
 }
 

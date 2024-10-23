@@ -1,7 +1,5 @@
 import { Outlet } from "react-router-dom";
 import styles from "./Dashboard.module.css";
-import { AvatarWithHightLight } from "@/components/Avatar/Avatar";
-import SmileIcon from "@/images/smile.jpg"
 import { useState } from "react";
 import { ChannelList } from "./components/ChannelList";
 
@@ -17,8 +15,10 @@ export default function Dashboard() {
       <aside className={styles.aside}>
         <ChannelList isShowAddIcon={true} />
       </aside>
-      <div className={styles["action-bar"]}></div>
-      <main className={styles.content}>
+      <main className={styles.main}>
+        <div className={styles.tips}></div>
+        <div className={styles["action-bar"]}></div>
+        <div className={styles.content}></div>
         {/* <Outlet></Outlet> */}
       </main>
     </div>
