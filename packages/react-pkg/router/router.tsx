@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
     {
-        path: '/main_window',
+        path: '/',
         element: <Dashboard />,
         children: [
             {
@@ -13,4 +13,6 @@ export const router = createBrowserRouter([
             }
         ]
     }
-])
+], {
+    basename: '/main_window'
+})

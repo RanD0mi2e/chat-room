@@ -24,7 +24,7 @@ export function ChannelList({
 
   const handleSelected = (id: string) => {
     setSelectedItemId(id);
-    navigate(`/main_window/channel/${id}`)
+    navigate(`/channel/${id}`)
     console.log("change", id);
   };
 

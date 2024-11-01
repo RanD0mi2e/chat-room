@@ -34,7 +34,7 @@
 }
 
 .pill-item {
-  background-color: #fff;
+  background-color: var(--active-color);
   border-radius: 0 4px 4px 0;
   width: 0px;
   height: 10px;
