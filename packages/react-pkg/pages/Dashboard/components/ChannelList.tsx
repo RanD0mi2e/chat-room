@@ -3,6 +3,7 @@ import SmileIcon from "@/images/smile.jpg";
 import { useEffect, useState } from "react";
 
 import styles from "./ChannelList.module.css";
+import { useNavigate } from "react-router-dom";
 
 interface ChannelProps {
   id: string;
@@ -18,8 +19,12 @@ export function ChannelList({
   const [selectedItemId, setSelectedItemId] = useState({});
   const [list, setList] = useState<ChannelProps[]>([]);
 
+  // 路由导航
+  const navigate = useNavigate()
+
   const handleSelected = (id: string) => {
     setSelectedItemId(id);
+    navigate(`/main_window/channel/${id}`)
     console.log("change", id);
   };
 
@@ -28,7 +33,8 @@ export function ChannelList({
 
     // TODO: replace MockData
     setTimeout(() => {
-      if (ignore) {
+      if (!ignore) {
+        console.log('trigger')
         const mockData: ChannelProps[] = [
           {
             id: "001",
@@ -50,7 +56,7 @@ export function ChannelList({
     return () => {
       ignore = true;
     };
-  });
+  }, []);
 
   return (
     <div className={styles["channel-box"]}>
