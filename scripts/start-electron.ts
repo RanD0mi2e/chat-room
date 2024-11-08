@@ -1,31 +1,23 @@
 import { spawn } from "child_process";
-import waitOn from "wait-on";
 import net from "net";
 
 const IPC_PORT = 8124;
 
 (async () => {
-  const server = net.createServer()
-  server.listen(IPC_PORT)
+  const server = net.createServer();
+  server.listen(IPC_PORT);
 
-  const viteProcess = spawn("npx", ["vite"], { stdio: "pipe" });
+  // 启动vite
+  const viteProcess = spawn("npx", ["vite"], { stdio: "inherit" });
 
-  let vitePort: string | null = null;
-
-  viteProcess.stdout.on("data", async (data) => {
-    const output = Buffer.isBuffer(data) ? data.toString() : String(data);
-
-    const match = output.match(/localhost:(\d+)/);
-    if (match) {
-      vitePort = match[1];
-
-      // 等待vite服务器启动
-      await waitOn({ resources: [`http://localhost:${vitePort}`] });
+  server.on("connection", (socket) => {
+    socket.on("data", (data) => {
+      const vitePort = data.toString();
 
       // 启动electron服务并传入端口号
       const electronProcess = spawn(
-        "electron",
-        ["-r", "ts-node/register", "electronMain/main.ts"],
+        "npx",
+        ["--experimental-modules", "tsx", "electronMain/main.ts"],
         {
           env: {
             ...process.env,
@@ -36,7 +28,10 @@ const IPC_PORT = 8124;
       );
 
       // electron进程关闭后，同时关闭vite进程
-      electronProcess.on("close", () => viteProcess.kill());
-    }
+      electronProcess.on("close", () => {
+        server.close()
+        viteProcess.kill()
+      });
+    });
   });
 })();
