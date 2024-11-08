@@ -27,6 +27,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "electronMain", "scripts"],
+  "include": ["src", "scripts"],
   "exclude": ["node_modules"]
 }

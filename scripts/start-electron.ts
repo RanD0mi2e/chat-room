@@ -1,37 +1,31 @@
 import { spawn } from "child_process";
-import net from "net";
-
-const IPC_PORT = 8124;
+import { createServer } from 'vite'
 
 (async () => {
-  const server = net.createServer();
-  server.listen(IPC_PORT);
+  // 启动 Vite 开发服务器
+  const viteServer = await createServer()
+  await viteServer.listen()
 
-  // 启动vite
-  const viteProcess = spawn("npx", ["vite"], { stdio: "inherit" });
+  const port = viteServer.config.server.port || 3000
 
-  server.on("connection", (socket) => {
-    socket.on("data", (data) => {
-      const vitePort = data.toString();
+  // 启动 Electron 主进程
+  const electronProcess = spawn('npx', [
+    'electron',
+    './electronMain/main.js', // 主进程的 TypeScript 文件路径
+    '--remote-debugging-port=9223'
+  ], {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      NODE_ENV: 'development',
+      VITE_DEV_SERVER_URL: `http://localhost:${port}`,
+    },
+  })
 
-      // 启动electron服务并传入端口号
-      const electronProcess = spawn(
-        "npx",
-        ["--experimental-modules", "tsx", "electronMain/main.ts"],
-        {
-          env: {
-            ...process.env,
-            VITE_DEV_SERVER_URL: `http://localhost:${vitePort}`,
-          },
-          stdio: "inherit",
-        }
-      );
-
-      // electron进程关闭后，同时关闭vite进程
-      electronProcess.on("close", () => {
-        server.close()
-        viteProcess.kill()
-      });
-    });
-  });
-})();
+  electronProcess.on('close', () => {
+    viteServer.close()
+    process.exit()
+  })
+})().catch(() => {
+  process.exit()
+});

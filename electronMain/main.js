@@ -1,3 +1,4 @@
+
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
 
@@ -6,10 +7,15 @@ const createWindow = () => {
     width: 1280,
     height: 720,
     webPreferences: {
-      preload: path.join(__dirname, "preload.ts"),
+      preload: path.join("./preload.ts"),
       contextIsolation: true,
     },
   });
+
+  if (process.env.NODE_ENV === 'development') {
+    // 打开开发者工具
+    win.webContents.openDevTools()
+  }
 
   // 加载URL or 本地文件
   const url =
