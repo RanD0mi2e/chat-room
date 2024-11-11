@@ -13,6 +13,7 @@ export default function GroupAccordion() {
     {
       title: "文字频道",
       id: "001",
+      type: 'text',
       groupItems: [
         {
           key: "new",
@@ -35,6 +36,7 @@ export default function GroupAccordion() {
     {
       title: "语音频道",
       id: "002",
+      type: 'audio',
       groupItems: [
         {
           key: "A1",
@@ -50,7 +52,7 @@ export default function GroupAccordion() {
 
   return <Accordion className={styles['accordion-container']} itemClasses={itemClass} selectionMode="multiple" variant="shadow">
     { AccordionList.map(accordion => <AccordionItem key={accordion.id} title={accordion.title} aria-label={accordion.title}>
-      <GroupList groupAriaLabel={accordion.title} groupItems={accordion.groupItems} />
+      <GroupList groupAriaLabel={accordion.title} groupItems={accordion.groupItems} type={accordion.type} />
     </AccordionItem>) }
   </Accordion>;
 }

@@ -48,7 +48,7 @@ export default function ChannelHeader({ title }: headerProps) {
     <div>
       <Popover key={title} showArrow offset={10} placement="bottom" backdrop="blur">
         <PopoverTrigger>
-          <Button radius="none" className="w-full" variant="faded">
+          <Button radius="none" className="w-full">
             {title}的频道
           </Button>
         </PopoverTrigger>

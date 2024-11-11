@@ -1,9 +1,10 @@
 import { AvatarWithHightLight } from "@/components/Avatar/Avatar";
 import SmileIcon from "@/images/smile.jpg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import styles from "./ChannelList.module.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "@/Contexts/UserContext";
 
 interface ChannelProps {
   id: string;
@@ -18,16 +19,17 @@ export function ChannelList({
   isShowAddIcon?: boolean;
   onChangeChannel: (val: string) => void
 }) {
-  const [selectedItemId, setSelectedItemId] = useState({});
   const [list, setList] = useState<ChannelProps[]>([]);
+
+  const { userState, updateUserState } = useContext(UserContext)!
 
   // 路由导航
   const navigate = useNavigate()
 
   const handleSelected = (id: string, name: string) => {
     onChangeChannel(name)
-    setSelectedItemId(id);
-    navigate(`/channel/${id}`)
+    updateUserState({selectedChannel: id})
+    navigate(`/channels/${id}`)
     console.log("change", id);
   };
 
@@ -67,7 +69,7 @@ export function ChannelList({
         <div key={item.id} className={styles["channel-item"]}>
           <AvatarWithHightLight
             src={SmileIcon}
-            isSelected={item.id === selectedItemId}
+            isSelected={item.id === userState.selectedChannel}
             size={50}
             onClick={() => handleSelected(item.id, item.name)}
           />

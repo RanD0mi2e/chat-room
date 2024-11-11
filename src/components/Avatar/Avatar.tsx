@@ -20,18 +20,19 @@ export function Avatar({ src, size = 40, isSelected, onClick }: AvatarProps) {
           onClick={onClick}
         />
       ) : (
-        <DefaultAvatar size={50} />
+        <DefaultAvatar size={50} onClick={onClick} />
       )}
     </>
   );
 }
 
 // 默认头像组件
-function DefaultAvatar({ size = 40 }: { size?: number }) {
+function DefaultAvatar({ size = 40, onClick }: { size?: number, onClick: () => void }) {
   return (
     <div
       style={{ width: size, height: size }}
       className={styles["default-img"]}
+      onClick={onClick}
     >
       <AddIcon className={styles["add-icon"]} />
     </div>
