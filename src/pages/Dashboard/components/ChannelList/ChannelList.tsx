@@ -13,8 +13,10 @@ interface ChannelProps {
 
 export function ChannelList({
   isShowAddIcon = false,
+  onChangeChannel
 }: {
   isShowAddIcon?: boolean;
+  onChangeChannel: (val: string) => void
 }) {
   const [selectedItemId, setSelectedItemId] = useState({});
   const [list, setList] = useState<ChannelProps[]>([]);
@@ -22,7 +24,8 @@ export function ChannelList({
   // 路由导航
   const navigate = useNavigate()
 
-  const handleSelected = (id: string) => {
+  const handleSelected = (id: string, name: string) => {
+    onChangeChannel(name)
     setSelectedItemId(id);
     navigate(`/channel/${id}`)
     console.log("change", id);
@@ -66,7 +69,7 @@ export function ChannelList({
             src={SmileIcon}
             isSelected={item.id === selectedItemId}
             size={50}
-            onClick={() => handleSelected(item.id)}
+            onClick={() => handleSelected(item.id, item.name)}
           />
         </div>
       ))}
