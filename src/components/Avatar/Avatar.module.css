@@ -5,10 +5,6 @@
   cursor: pointer;
 }
 
-/* .avatar:hover {
-  border-radius: 20%;
-} */
-
 .selected {
   border-radius: 20%;
 }
@@ -41,22 +37,23 @@
   transition: all 0.2s ease-out;
 }
 
-.avatar-hl:hover .avatar{
+.avatar-hl:hover .avatar {
   border-radius: 20%;
 }
 
-.avatar-hl:hover>.pill>.pill-item{
+.avatar-hl:hover > .pill > .pill-item {
   width: 5px;
   height: 20px;
 }
 
-.avatar-hl-selected>.pill>.pill-item {
+.avatar-hl-selected > .pill > .pill-item {
   width: 5px;
   height: 80%;
 }
 
-.default-img {
-  border-radius: 50%;
+.default-img,
+.plus-img {
+  /* border-radius: 50%; */
   background-color: var(--avatar-bg-color);
   transition: all 0.2s;
   display: flex;
@@ -67,6 +64,14 @@
 
 .default-img:hover {
   border-radius: 20%;
+}
+
+.default-img .selected{
+  border-radius: 20%;
+}
+
+.plus-img:hover {
+  border-radius: 20%;
   background-color: #23a559;
 }
 
@@ -76,7 +81,7 @@
   color: hsl(145 calc(1 * 65%) 39.2% / 1);
 }
 
-.default-img:hover .add-icon {
+.default-img:hover .add-icon,
+.plus-img:hover .add-icon {
   color: #fff;
 }
-

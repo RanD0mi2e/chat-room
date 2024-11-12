@@ -1,88 +1,57 @@
-import { AvatarWithHightLight } from "@/components/Avatar/Avatar";
-import SmileIcon from "@/images/smile.jpg";
-import { useContext, useEffect, useState } from "react";
+import {
+  Avatar,
+  AvatarWithHightLight,
+  PlusAvatar,
+} from "@/components/Avatar/Avatar";
 
 import styles from "./ChannelList.module.css";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "@/Contexts/UserContext";
+import { useLocation } from "react-router-dom";
+import AddIcon from "@/images/add.svg?react";
 
-interface ChannelProps {
+export interface ChannelProps {
   id: string;
   name: string;
-  selected?: boolean;
+  iconSrc?: string;
 }
 
 export function ChannelList({
+  channelArr,
+  selectedId,
   isShowAddIcon = false,
-  onChangeChannel
+  onChangeChannel,
 }: {
+  channelArr: ChannelProps[];
+  selectedId: string;
   isShowAddIcon?: boolean;
-  onChangeChannel: (val: string) => void
+  onChangeChannel: (id: string, name: string) => void;
 }) {
-  const [list, setList] = useState<ChannelProps[]>([]);
-
-  const { userState, updateUserState } = useContext(UserContext)!
-
-  // 路由导航
-  const navigate = useNavigate()
+  const location = useLocation();
+  console.log("location", location);
 
   const handleSelected = (id: string, name: string) => {
-    onChangeChannel(name)
-    updateUserState({selectedChannel: id})
-    navigate(`/channels/${id}`)
-    console.log("change", id);
+    onChangeChannel(id, name);
   };
-
-  useEffect(() => {
-    let ignore = false;
-
-    // TODO: replace MockData
-    setTimeout(() => {
-      if (!ignore) {
-        console.log('trigger')
-        const mockData: ChannelProps[] = [
-          {
-            id: "001",
-            name: "niko",
-          },
-          {
-            id: "002",
-            name: "hohi",
-          },
-          {
-            id: "003",
-            name: "jenkins",
-          },
-        ];
-        setList(mockData);
-      }
-    }, 200);
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
 
   return (
     <div className={styles["channel-box"]}>
-      {list.map((item) => (
+      {channelArr.map((item) => (
         <div key={item.id} className={styles["channel-item"]}>
-          <AvatarWithHightLight
-            src={SmileIcon}
-            isSelected={item.id === userState.selectedChannel}
-            size={50}
-            onClick={() => handleSelected(item.id, item.name)}
-          />
+          <AvatarWithHightLight isSelected={item.id === selectedId} size={50}>
+            <Avatar
+              src={item.iconSrc}
+              size={50}
+              isSelected={item.id === selectedId}
+              onClick={() => handleSelected(item.id, item.name)}
+            />
+          </AvatarWithHightLight>
         </div>
       ))}
       {/** 新增 */}
       {isShowAddIcon ? (
         <div className={styles["add-newchannel"]}>
-          <AvatarWithHightLight
-            isSelected={false}
-            size={50}
-            onClick={() => {}}
-          />
+          <AvatarWithHightLight isSelected={false} size={50}>
+            <PlusAvatar size={50} isSelected={false} onClick={() => {}} />
+          </AvatarWithHightLight>
         </div>
       ) : null}
     </div>

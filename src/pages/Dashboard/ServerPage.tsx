@@ -2,15 +2,16 @@ import { Outlet } from "react-router-dom";
 import ChannelHeader from "./components/ChannelHeader/ChannnelHeader";
 import GroupAccordion from "./components/GroupAccordion/GroupAccordion";
 import styles from "./Dashboard.module.css";
-import { useServerInfo } from "./Dashboard";
+import { useContext } from "react";
+import { UserContext } from "@/Contexts/UserContext";
 
 export default function ServerPage() {
-  const { servername } = useServerInfo();
+  const { userState } = useContext(UserContext)!
 
   return (
     <>
       <div className={styles["action-bar"]}>
-        <ChannelHeader title={servername} />
+        <ChannelHeader title={userState.selectedMenuName} />
         <GroupAccordion />
       </div>
       <div className={styles.content}>

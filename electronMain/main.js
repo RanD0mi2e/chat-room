@@ -1,8 +1,14 @@
-
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
+import { fileURLToPath } from "url";
+import installExtension, {
+  REACT_DEVELOPER_TOOLS,
+} from "electron-devtools-installer";
 
-const createWindow = () => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const createWindow = async () => {
   const win = new BrowserWindow({
     width: 1280,
     height: 720,
@@ -12,9 +18,13 @@ const createWindow = () => {
     },
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
+    installExtension
+      .default(REACT_DEVELOPER_TOOLS)
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log("An error occurred: ", err));
     // 打开开发者工具
-    win.webContents.openDevTools()
+    win.webContents.openDevTools();
   }
 
   // 加载URL or 本地文件
@@ -26,17 +36,17 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
-})
+  });
+});
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
+});

@@ -33,6 +33,7 @@ export default function GroupList(props: GroupProps) {
         {props.groupItems.map((item) => (
           <ListboxItem
             classNames={classNames}
+            textValue={item.key}
             key={item.key}
             color={item.key === "delete" ? "danger" : "default"}
             className={item.key === "delete" ? "text-danger" : ""}

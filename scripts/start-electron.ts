@@ -15,6 +15,7 @@ import { createServer } from 'vite'
     '--remote-debugging-port=9223'
   ], {
     stdio: 'inherit',
+    shell: true,
     env: {
       ...process.env,
       NODE_ENV: 'development',
@@ -22,9 +23,19 @@ import { createServer } from 'vite'
     },
   })
 
+  const closeAllProcesses = () => {
+    if (electronProcess) {
+      electronProcess.kill()  // 关闭 Electron 进程
+    }
+    viteServer.close()  // 关闭 Vite 服务
+    process.exit()      // 退出当前脚本
+  }
+
+  process.on('SIGINT', closeAllProcesses)  // 监听 Ctrl + C
+  process.on('SIGTERM', closeAllProcesses) // 监听终止信号
+
   electronProcess.on('close', () => {
-    viteServer.close()
-    process.exit()
+    closeAllProcesses()
   })
 })().catch(() => {
   process.exit()

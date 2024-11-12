@@ -1,5 +1,7 @@
+import DefaultUserIcon from "@/images/DefaultUserIcon";
 import styles from "./Avatar.module.css";
-import AddIcon from '@/images/add.svg?react';
+import AddIcon from "@/images/add.svg?react";
+import { ReactNode } from "react";
 
 interface AvatarProps {
   src?: string;
@@ -20,32 +22,60 @@ export function Avatar({ src, size = 40, isSelected, onClick }: AvatarProps) {
           onClick={onClick}
         />
       ) : (
-        <DefaultAvatar size={50} onClick={onClick} />
+        <DefaultAvatar size={size} isSelected={isSelected} onClick={onClick} />
       )}
     </>
   );
 }
 
 // 默认头像组件
-function DefaultAvatar({ size = 40, onClick }: { size?: number, onClick: () => void }) {
+function DefaultAvatar({
+  size = 40,
+  isSelected,
+  onClick,
+}: {
+  size?: number;
+  isSelected: boolean;
+  onClick: () => void;
+}) {
   return (
     <div
       style={{ width: size, height: size }}
-      className={styles["default-img"]}
+      className={`${styles["default-img"]} ${styles.avatar} ${
+        isSelected ? styles.selected : ""
+      }`}
       onClick={onClick}
     >
-      <AddIcon className={styles["add-icon"]} />
+      <DefaultUserIcon />
     </div>
+  );
+}
+
+// 加号
+export function PlusAvatar({ size = 40, onClick }: AvatarProps) {
+  return (
+    <>
+      <div
+        style={{ width: size, height: size }}
+        className={`${styles["avatar"]} ${styles["plus-img"]}`}
+        onClick={onClick}
+      >
+        <AddIcon className={styles["add-icon"]} />
+      </div>
+    </>
   );
 }
 
 // 带选中动画头像组件
 export function AvatarWithHightLight({
-  src,
+  children,
   size = 40,
   isSelected,
-  onClick,
-}: AvatarProps) {
+}: {
+  children?: ReactNode;
+  size: number;
+  isSelected: boolean;
+}) {
   return (
     <div
       className={`${
@@ -55,7 +85,9 @@ export function AvatarWithHightLight({
       <div className={styles.pill} style={{ height: size + "px" }}>
         <span className={`${styles["pill-item"]}`} />
       </div>
-      <Avatar src={src} size={size} isSelected={isSelected} onClick={onClick} />
+      {children}
+      {/* <PlusAvatar src={src} size={size} isSelected={isSelected} onClick={onClick} /> */}
+      {/* <Avatar src={src} size={size} isSelected={isSelected} onClick={onClick} /> */}
     </div>
   );
 }

@@ -1,11 +1,12 @@
-import { createContext, FC, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 interface State {
   account?: string;
   phone?: string;
   email?: string;
   token?: string;
-  selectedChannel: string;
+  selectedMenu: string;
+  selectedMenuName: string
 }
 
 interface contextType {
@@ -21,7 +22,8 @@ export const UserContext = createContext<contextType | undefined>(undefined);
 
 export const UserProvider = ({children}: ProviderComponent) => {
   const [contextState, setContextState] = useState<State>({
-    selectedChannel: "me",
+    selectedMenu: "",
+    selectedMenuName: ""
   });
 
   // 更新数据
