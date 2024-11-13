@@ -1,5 +1,8 @@
-import HashTagIcon from "@/images/HashTagIcon";
-import SpeakerIcon from "@/images/SpeakerIcon";
+import HashTagIcon from "@/images/iconTsx/HashTagIcon";
+import IconWrapper from "@/images/iconTsx/IconWrapper";
+import SpeakerIcon from "@/images/iconTsx/SpeakerIcon";
+import InviteUserSvg from "@/images/svg/inviteUser.svg?react";
+import SettingSvg from "@/images/svg/setting.svg?react";
 import { Listbox, ListboxItem } from "@nextui-org/react";
 // import styles from "./GroupList.module.css";
 
@@ -9,7 +12,7 @@ type GroupProps = {
     label: string;
   }[];
   groupAriaLabel: string;
-  type: string
+  type: string;
 };
 
 export default function GroupList(props: GroupProps) {
@@ -18,14 +21,27 @@ export default function GroupList(props: GroupProps) {
   };
 
   const IconRenderer = () => {
-    if (props.type === 'text') {
-      return <HashTagIcon className="-translate-y-[0.5px]" />
+    if (props.type === "text") {
+      return <HashTagIcon className="-translate-y-[0.5px]" />;
     }
-    if (props.type === 'audio') {
-      return <SpeakerIcon className="-translate-y-[0.5px]" />
+    if (props.type === "audio") {
+      return <SpeakerIcon className="-translate-y-[0.5px]" />;
     }
-    return null
-  }
+    return null;
+  };
+
+  const ActionRenderer = () => {
+    return (
+      <div className="flex items-center ml-auto">
+        <IconWrapper width="1.2em" height="1.2em" className="mr-2">
+          <InviteUserSvg />
+        </IconWrapper>
+        <IconWrapper width="1.2em" height="1.2em">
+          <SettingSvg />
+        </IconWrapper>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -41,6 +57,7 @@ export default function GroupList(props: GroupProps) {
             <div className="flex items-center">
               <IconRenderer />
               <span className="pl-2">{item.label}</span>
+              <ActionRenderer />
             </div>
           </ListboxItem>
         ))}

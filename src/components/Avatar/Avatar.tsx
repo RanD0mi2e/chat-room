@@ -1,6 +1,6 @@
-import DefaultUserIcon from "@/images/DefaultUserIcon";
+import DefaultUserIcon from "@/images/iconTsx/DefaultUserIcon";
 import styles from "./Avatar.module.css";
-import AddIcon from "@/images/add.svg?react";
+import AddIcon from "@/images/svg/add.svg?react";
 import { ReactNode } from "react";
 
 interface AvatarProps {
