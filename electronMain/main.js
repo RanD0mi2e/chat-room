@@ -21,8 +21,8 @@ const createWindow = async () => {
   if (process.env.NODE_ENV === "development") {
     installExtension
       .default(REACT_DEVELOPER_TOOLS)
-      .then((name) => console.log(`Added Extension:  ${name}`))
-      .catch((err) => console.log("An error occurred: ", err));
+      .then((name) => console.log('\x1b[32m%s\x1b[0m', `Added Extension:  ${name}`))
+      .catch((err) => console.log('\x1b[31m%s\x1b[0m', "An error occurred: ", err));
     // 打开开发者工具
     win.webContents.openDevTools();
   }

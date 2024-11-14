@@ -16,22 +16,44 @@
   /* --background-color: #1e1f22; */
   /* --text-color: black; */
   font-size: 14px;
+  --saturation-factor: 1;
+  --devtools-sidebar-width: 0px;
+  --primary-400: hsl(222.857 calc(1 * 5.833%) 52.941% / 1);
+  --primary-430: hsl(229.091 calc(1 * 4.803%) 44.902% / 1);
 }
 
 [data-theme="dark"] {
   --background-color: #1e1f22;
   --background-actionBar-color: #2b2d31;
-  --background-content-color: #313338;
+  --background-primary-color: #313338;
   --text-color: white;
   --active-color: #fff;
   --avatar-bg-color: #313338;
+  --shadow-ledge: 0 2px 0 0 hsl(none 0% 0% / 0.05),
+    0 1.5px 0 0 hsl(none 0% 0% / 0.05), 0 1px 0 0 hsl(none 0% 0% / 0.16);
+  --channel-icon: color-mix(
+    in oklab,
+    var(--primary-400) 100%,
+    var(--theme-text-color, black) var(--theme-text-color-amount, 0%)
+  );
 }
 
 [data-theme="light"] {
   --background-color: #e3e5e8;
   --background-actionBar-color: #f2f3f5;
-  --background-content-color: #ffffff;
+  --background-primary-color: #ffffff;
   --text-color: black;
   --active-color: #060607;
   --avatar-bg-color: #fff;
+  --shadow-ledge: 0 2px 0 0 hsl(none 0% 0% / 0.03),
+    0 1.5px 0 0 hsl(none 0% 0% / 0.03), 0 1px 0 0 hsl(none 0% 0% / 0.08);
+  --channel-icon: color-mix(
+    in oklab,
+    var(--primary-430) 100%,
+    var(--theme-text-color, black) var(--theme-text-color-amount, 0%)
+  );
+}
+
+.ledge-shadow {
+  box-shadow: var(--shadow-ledge);
 }
