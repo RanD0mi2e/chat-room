@@ -30,7 +30,7 @@
 
 .content {
   grid-area: content;
-  background-color: var(--background-content-color);
+  background-color: var(--background-primary-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

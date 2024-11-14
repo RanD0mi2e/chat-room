@@ -90,7 +90,7 @@ export default function GroupAccordion() {
   return (
     <Accordion
       selectedKeys={selectedKeys}
-      className={styles["accordion-container"]}
+      className={`${styles["accordion-container"]} `}
       itemClasses={itemClass}
       selectionMode="multiple"
       variant="shadow"

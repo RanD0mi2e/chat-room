@@ -6,7 +6,6 @@ import {
 
 import styles from "./ChannelList.module.css";
 import { useLocation } from "react-router-dom";
-import AddIcon from "@/images/add.svg?react";
 
 export interface ChannelProps {
   id: string;

@@ -1,4 +1,5 @@
 :root .accordion-container {
   background-color: var(--background-actionBar-color);
   border-radius: 0;
+  color: var(--channel-icon)
 }
