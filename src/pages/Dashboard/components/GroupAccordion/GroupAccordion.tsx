@@ -57,28 +57,23 @@ export default function GroupAccordion() {
 
   const handleSettingClick = (e: MouseEvent) => {
     e.stopPropagation()
-    console.log('tri3', e);
   }
 
   const handleAccordionToggle = (id: string) => {
-    console.log('0', selectedKeys);
-    
     const originalSelectedKeys = new Set(selectedKeys)
-    console.log('1', originalSelectedKeys);
     
     if (originalSelectedKeys.has(id)) {
       originalSelectedKeys.delete(id)
     } else {
       originalSelectedKeys.add(id)
     }
-    console.log('2', originalSelectedKeys);
     
     setSelectedKeys(originalSelectedKeys)
   }
 
   const AccordionItemTitleRenderer = (title: string) => {
     return <>
-      <div className="flex justify-between items-center">
+      <div className={`flex justify-between items-center ${styles['accordion-item']}`}>
         <span>{title}</span>
         <IconWrapper width="1.4em" height="1.4em" className="transform transition-transform duration-150 hover:scale-125">
           <AddSvg onClick={handleSettingClick} />

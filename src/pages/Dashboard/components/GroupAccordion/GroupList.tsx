@@ -4,7 +4,6 @@ import SpeakerIcon from "@/images/iconTsx/SpeakerIcon";
 import InviteUserSvg from "@/images/svg/inviteUser.svg?react";
 import SettingSvg from "@/images/svg/setting.svg?react";
 import { Listbox, ListboxItem } from "@nextui-org/react";
-// import styles from "./GroupList.module.css";
 
 type GroupProps = {
   groupItems: {
@@ -45,7 +44,7 @@ export default function GroupList(props: GroupProps) {
 
   return (
     <div>
-      <Listbox items={props.groupItems} aria-label={props.groupAriaLabel}>
+      <Listbox items={props.groupItems} aria-label={props.groupAriaLabel} onAction={(key) => console.log(key)}>
         {props.groupItems.map((item) => (
           <ListboxItem
             classNames={classNames}

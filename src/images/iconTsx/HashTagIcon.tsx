@@ -5,13 +5,13 @@ type iconProps = {
 export default function HashTagIcon(props: iconProps) {
   return (
     <svg
-      {...props}
+      width="1em"
+      height="1em"
       viewBox="0 0 1024 1024"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       p-id="22633"
-      width="1em"
-      height="1em"
+      {...props}
     >
       <path
         d="M128 341.333333m42.666667 0l682.666666 0q42.666667 0 42.666667 42.666667l0 0q0 42.666667-42.666667 42.666667l-682.666666 0q-42.666667 0-42.666667-42.666667l0 0q0-42.666667 42.666667-42.666667Z"
