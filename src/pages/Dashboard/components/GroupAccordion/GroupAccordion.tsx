@@ -21,19 +21,19 @@ export default function GroupAccordion() {
       type: "text",
       groupItems: [
         {
-          key: "new",
+          key: "0001",
           label: "New file",
         },
         {
-          key: "copy",
+          key: "0002",
           label: "Copy link",
         },
         {
-          key: "edit",
+          key: "0003",
           label: "Edit file",
         },
         {
-          key: "delete",
+          key: "0004",
           label: "Delete file",
         },
       ],

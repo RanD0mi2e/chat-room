@@ -6,7 +6,10 @@ interface State {
   email?: string;
   token?: string;
   selectedMenu: string;
-  selectedMenuName: string
+  selectedMenuName: string;
+  selectedChannelType?: string;
+  selectedChannelName: string;
+  selectedChannel: string;
 }
 
 interface contextType {
@@ -23,7 +26,9 @@ export const UserContext = createContext<contextType | undefined>(undefined);
 export const UserProvider = ({children}: ProviderComponent) => {
   const [contextState, setContextState] = useState<State>({
     selectedMenu: "",
-    selectedMenuName: ""
+    selectedMenuName: "",
+    selectedChannel: "",
+    selectedChannelName: ""
   });
 
   // 更新数据

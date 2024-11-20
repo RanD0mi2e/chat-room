@@ -6,7 +6,7 @@ import { Channel } from "@/pages/ChannelDetail/ChannelDetail";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/channel",
     element: <Dashboard />,
     children: [
       {
@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
         element: <ProfilePage />,
       },
       {
-        path: "channels",
+        path: ":serverId",
         element: <ServerPage />,
         children: [
           {

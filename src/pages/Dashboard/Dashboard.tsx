@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { useContext, useEffect, useState } from "react";
 import {
@@ -38,12 +38,16 @@ const ChannelMenuGroup = () => {
   const { userState, updateUserState } = useContext(UserContext)!;
   const [groupMenu, setGroupMenu] = useState<GroupedMenuType | null>(null);
 
+  const params = useParams()
+  console.log("params",params);
+  
+
   const handleSelectChannel = (newId: string, newTitle: string) => {
     // 跳转个人页
     if (newId === "profile") {
-      navigate("/profile");
+      navigate("/channel/profile");
     } else {
-      navigate("/channels/" + newId);
+      navigate("/channel/" + newId);
     }
     updateUserState({ selectedMenu: newId, selectedMenuName: newTitle });
   };
