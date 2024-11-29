@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import ServerPage from "@/pages/Dashboard/ServerPage";
 import ProfilePage from "@/pages/ProfilePage/ProfilePage";
 import { Channel } from "@/pages/ChannelDetail/ChannelDetail";
+import { NotFound } from "@/pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -29,4 +30,12 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  { // 拦截未匹配的路由并重定向到404页面
+    path: "*",
+    element: <Navigate to="/404NotFound" />
+  },
+  {
+    path: "/404NotFound",
+    element: <NotFound />
+  }
 ]);
