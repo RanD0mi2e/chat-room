@@ -1,8 +1,7 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { useContext, useEffect, useState } from "react";
-import {
-  ChannelList,
+import ChannelList, {
   ChannelProps,
 } from "./components/ChannelList/ChannelList";
 import { ThemeContext } from "@/Contexts/ThemeContext";
@@ -45,7 +44,7 @@ const ChannelMenuGroup = () => {
   const handleSelectChannel = (newId: string, newTitle: string) => {
     // 跳转个人页
     if (newId === "profile") {
-      navigate("/channel/profile");
+      navigate("/profile");
     } else {
       navigate("/channel/" + newId);
     }

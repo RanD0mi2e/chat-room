@@ -13,7 +13,7 @@ export interface ChannelProps {
   iconSrc?: string;
 }
 
-export function ChannelList({
+export default function ChannelList({
   channelArr,
   selectedId,
   isShowAddIcon = false,

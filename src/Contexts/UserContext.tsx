@@ -10,6 +10,14 @@ interface State {
   selectedChannelType?: string;
   selectedChannelName: string;
   selectedChannel: string;
+  menus: MenuItem[]
+}
+
+interface MenuItem {
+  id: string
+  path: string
+  name: string
+  children: MenuItem[]
 }
 
 interface contextType {
@@ -28,7 +36,8 @@ export const UserProvider = ({children}: ProviderComponent) => {
     selectedMenu: "",
     selectedMenuName: "",
     selectedChannel: "",
-    selectedChannelName: ""
+    selectedChannelName: "",
+    menus: []
   });
 
   // 更新数据
