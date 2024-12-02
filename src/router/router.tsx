@@ -8,8 +8,9 @@ import React, { createElement } from "react";
 
 // 页面异步加载
 // 必须是export default默认导出的组件，否则懒加载会报错！
+// vite默认规则是不允许动态导入的，但是必须通过后端返回的pageName去确定
 export const lazyLoadedPage = (pageName: string) => {
-  return React.lazy(() => import(`@/pages/${pageName}`));
+  return React.lazy(() => import(/* @vite-ignore */ `@/pages/${pageName}`));
 };
 
 export type PermissionRoute = {
@@ -20,7 +21,7 @@ export type PermissionRoute = {
   children: PermissionRoute[];
 }
 
-// 后端权限控制路由拼接前端非权限控制路由
+// 后端权限控制路由 + 前端非权限控制路由 = 完整前端路由表(带角色权限)
 export const generateMixinRoutes = (
   routes: PermissionRoute[],
   sourceRoute: RouteObject[]
@@ -39,7 +40,7 @@ export const generateMixinRoutes = (
       }
 
     } else {
-      // 不存在对应路由，直接从原路由
+      // 不存在对应路由，直接挂载在原路由表最后位置
       sourceRoute.push({
         path: permission.path,
         children: recursivePermissionMap(permission.children),
