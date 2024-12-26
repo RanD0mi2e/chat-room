@@ -5,8 +5,9 @@ import SpeakerIcon from "@/images/iconTsx/SpeakerIcon";
 import InviteUserSvg from "@/images/svg/inviteUser.svg?react";
 import SettingSvg from "@/images/svg/setting.svg?react";
 import { Listbox, ListboxItem } from "@nextui-org/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from './GroupList.module.css'
 
 type GroupProps = {
   groupItems: GroupItemProps[];
@@ -17,10 +18,11 @@ type GroupProps = {
 export type GroupItemProps = {
   key: string;
   label: string;
-}
+};
 
 export default function GroupList(props: GroupProps) {
-  const userContext = useContext(UserContext)!
+  const userContext = useContext(UserContext)!;
+  const [selectedKeys, setSelectedKeys] = useState(new Set<string>());
 
   const classNames = {
     wrapper: "py-0",
@@ -49,28 +51,34 @@ export default function GroupList(props: GroupProps) {
     );
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const HandlerItemClick = (item: GroupItemProps) => {
     console.log(item);
-    navigate(`/channel/${userContext.userState.selectedMenu}/${item.key}`)
+    navigate(`/channel/${userContext.userState.selectedMenu}/${item.key}`);
     userContext.updateUserState({
       selectedChannelType: props.type,
       selectedChannelName: item.label,
-      selectedChannel: item.key
-    })
-  }
+      selectedChannel: item.key,
+    });
+  };
 
   return (
     <div>
-      <Listbox items={props.groupItems} aria-label={props.groupAriaLabel}>
+      <Listbox
+        items={props.groupItems}
+        aria-label={props.groupAriaLabel}
+        selectionMode="single"
+        selectedKeys={selectedKeys}
+        onSelectionChange={(keys) => setSelectedKeys(keys as Set<string>)}
+      >
         {props.groupItems.map((item) => (
           <ListboxItem
             classNames={classNames}
             textValue={item.key}
             key={item.key}
             color={item.key === "delete" ? "danger" : "default"}
-            className={item.key === "delete" ? "text-danger" : ""}
+            className={`${item.key === "delete" ? "text-danger" : ""} ${selectedKeys.has(item.key) ? styles['hightlight']: ''}`}
             onClick={() => HandlerItemClick(item)}
           >
             <div className="flex items-center">

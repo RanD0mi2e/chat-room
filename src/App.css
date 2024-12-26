@@ -36,6 +36,8 @@
     var(--primary-400) 100%,
     var(--theme-text-color, black) var(--theme-text-color-amount, 0%)
   );
+  --default-foreground: 0 0% 100%;
+  --default: 240 5.26% 26.08%;
 }
 
 [data-theme="light"] {
@@ -52,6 +54,8 @@
     var(--primary-430) 100%,
     var(--theme-text-color, black) var(--theme-text-color-amount, 0%)
   );
+  --default-foreground: 0 0% 0%;
+  --default: 240 4.88% 83.92%;
 }
 
 .ledge-shadow {

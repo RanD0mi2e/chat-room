@@ -1,0 +1,6 @@
+.hightlight {
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  color: hsl(var(--nextui-default-foreground) / var(--tw-text-opacity));
+  background-color: hsl(var(--nextui-default) / var(--tw-bg-opacity));
+}

@@ -12,6 +12,7 @@ export default function GroupAccordion() {
     content: "bg-inherit pt-0",
   };
 
+  // 展开项
   const [selectedKeys, setSelectedKeys] = useState(new Set(["001", "002"]));
 
   const AccordionList = [
