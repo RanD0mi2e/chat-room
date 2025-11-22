@@ -1,13 +1,14 @@
+import { Channel } from "@/pages/Channel/Channel";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/Login/Login";
 import ForgotPassword from "../pages/Login/ForgotPassword";
 import { createHashRouter, Navigate } from "react-router-dom";
 
 export const router = createHashRouter([
-    {
-        path: '/',
-        element: <Navigate to="/login" replace />
-    },
+    // {
+    //     path: '/',
+    //     element: <Navigate to="/login" replace />
+    // },
     {
         path: '/login',
         element: <Login />
@@ -17,7 +18,13 @@ export const router = createHashRouter([
         element: <ForgotPassword />
     },
     {
-        path: '/main_window',
-        element: <Dashboard />
+        path: '/',
+        element: <Dashboard />,
+        children: [
+            {
+                path: 'channel/:channelId',
+                element: <Channel />
+            }
+        ]
     }
 ])

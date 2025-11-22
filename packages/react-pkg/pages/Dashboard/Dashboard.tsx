@@ -12,8 +12,8 @@ export default function Dashboard() {
   const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
     <div className={styles.layout}>
@@ -21,7 +21,6 @@ export default function Dashboard() {
         <ChannelList isShowAddIcon={true} />
       </aside>
       <main className={styles.main}>
-        <div className={styles.tips}></div>
         <div className={styles["action-bar"]}></div>
         <div className={styles.content}>
           <ToggleThemeButton />
@@ -29,7 +28,7 @@ export default function Dashboard() {
             onClick={() => navigate('/login')}
             className={styles.returnButton}
           >
-            Go to Login
+            Go to Login 1
           </button>
         </div>
         <Outlet></Outlet>

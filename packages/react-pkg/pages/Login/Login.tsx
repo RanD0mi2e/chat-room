@@ -21,7 +21,7 @@ export default function Login() {
     const handleLogin = () => {
         console.log('Logging in with:', formData);
         // Mock login success
-        navigate('/main_window');
+        navigate('/');
     };
 
     const handleCreateAccount = () => {
@@ -33,7 +33,7 @@ export default function Login() {
         <div className={styles.container}>
             <div className={styles.card}>
                 <div
-                    onClick={() => navigate('/main_window')}
+                    onClick={() => navigate('/')}
                     style={{
                         position: 'absolute',
                         top: '20px',

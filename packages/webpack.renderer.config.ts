@@ -41,7 +41,5 @@ export const rendererConfig: Configuration = {
       "@": path.resolve(__dirname, "react-pkg"),
     },
   },
-  devServer: {
-    historyApiFallback: true,
-  },
+  devServer: {},
 } as Configuration;
